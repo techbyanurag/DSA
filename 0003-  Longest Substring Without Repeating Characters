@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+int lengthOfLongestSubstring(char* s) {
+    int store[256] = {0};
+    int l = 0;
+    int r = 0;
+    int ans = 0;
+    
+    while (r < strlen(s)) {
+        store[(unsigned char)s[r]]++;
+        
+        while (store[(unsigned char)s[r]] > 1) {
+            store[(unsigned char)s[l]]--;
+            l++;
+        }
+        
+        if (r - l + 1 > ans) {
+            ans = r - l + 1;
+        }
+        r++;
+    }
+    return ans;
+}
