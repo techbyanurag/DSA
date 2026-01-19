@@ -1,0 +1,17 @@
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        matrix_dp=[[-1 for i in range(n)] for j in range(m)]
+        def dp(i,j):
+            if(i==0 and j==0):
+                matrix_dp[i][j]=1
+                return matrix_dp[i][j]
+            if(i<0 or j<0):
+                return 0
+            if(matrix_dp[i][j]!=-1):
+                return matrix_dp[i][j]
+            matrix_dp[i][j]=dp(i-1,j) + dp(i,j-1)
+            return matrix_dp[i][j]
+        dp(m-1,n-1)
+        result=matrix_dp[m-1][n-1]
+        return result
+        
